@@ -4,16 +4,19 @@ import numpy as np
 
 x0 = 0
 y0 = 1
-h = 0.1
-n = 10
+h1 = 0.01
+h2 = 0.05
+h3 = 0.01
+n = 1000
+tau = 1
 
 
 def f(x, y):
-    return y * 2 * x
+    return -y/tau
 
 
 def ori(x):
-    return np.e ** (x**2)
+    return np.e ** (-x/tau)
 
 
 def euler(x0, y0, h, n):
@@ -31,23 +34,6 @@ def euler(x0, y0, h, n):
         euler_array_y[i] = y
     return euler_array_x, euler_array_y
 
-
-def heun(x0, y0, h, n):
-    heun_array_x = np.zeros([n+1], dtype='float64')
-    heun_array_y = np.zeros([n+1], dtype='float64')
-    y = y0
-    x = x0
-    heun_array_x[0] = x
-    heun_array_y[0] = y
-    for i in range(1, n+1):
-        d0 = f(x, y)
-        d1 = f(x + h, y + d0*h)
-        d = (d0 + d1) / 2
-        y += d * h
-        x = x0 + i*h
-        heun_array_x[i] = x
-        heun_array_y[i] = y
-    return heun_array_x, heun_array_y
 
 
 def rungkutt(x0, y0, h, n):
@@ -70,16 +56,20 @@ def rungkutt(x0, y0, h, n):
     return rungkutt_array_x, rungkutt_array_y
 
 
-ori_x = np.linspace(0, n*h, 100)
+ori_x = np.linspace(0, n*h1, n+1)
 ori_y = ori(ori_x)
-plt.plot(ori_x, ori_y, '-r')
+# plt.plot(ori_x, ori_y, '-r')
 
-xe, ye = euler(x0, y0, h, n)
-xh, yh = heun(x0, y0, h, n)
-xrk, yrk = rungkutt(x0, y0, h, n)
+x1, y1 = euler(x0, y0, h1, n)
+x2, y2 = euler(x0, y0, h2, n)
+x3, y3 = euler(x0, y0, h3, n)
 
-plt.plot(xe, ye, '-y')
-plt. plot(xh, yh, '-b')
-plt.plot(xrk, yrk, '-g')
+x = ori_x
+y = ori_y - y1
+
+plt.plot(x, y, '-b')
+
+# plt.plot(ori_x, ori_y, '-r')
+# plt.plot(x1, y1, '-g')
 
 plt.show()
