@@ -52,7 +52,7 @@ class Figure:
         if x_min is not None and x_max is not None:
             self.ax.set_xlim([x_min, x_max])
         if y_min is not None and y_max is not None:
-            self.ax.et_ylim([y_min, y_max])
+            self.ax.set_ylim([y_min, y_max])
         if font is None:  # Set font for axes labels.
             font = {'family': 'serif', 'size': 10, 'color': 'black'}
         self.ax.set_xlabel(x_label, fontdict=font)
@@ -77,7 +77,7 @@ class Figure:
                   ms=5,
                   ls='',
                   lw=2,
-                  c='k',
+                  c=None,
                   **kwargs
                   ):
         self.ax.errorbar(x, y, xerr=xerr, yerr=yerr, ecolor=c, elinewidth=error_line_width,
@@ -257,5 +257,9 @@ class Figure:
     @staticmethod
     def save(file_name='Figure.svg'):
         plt.savefig(file_name)
+    
+    @staticmethod
+    def legend():
+        plt.legend()
 
 

@@ -35,17 +35,38 @@ def euler(x0, y0, h, N):
 
 
 
-x, y = euler(x0, y0, h, N)
-yp = ori(x)
+################# Plot Euler Approximation #################
 
-yerr = yp - y
+# fig = Figure(x_label='Time (s)', y_label="Count")
 
-fig = Figure()
-# fig.plot(x, yp, m='', ls='--', c='k', lw=1)
-# fig.plot(x, y, m='', ls='-', lw=1)
-fig.line(x, yerr)
+# x, y = euler(x0, y0, h, N)
+# yori = ori(x)
+# fig.plot(x, yori, m='', ls='--', lw=0.7, c='k', label="Exact Solution")
+
+# for i in [0.1]:
+#     x, y = euler(x0, y0, i, N)
+#     yori = ori(x)
+#     fig.plot(x, y, m='', ls='-', lw=0.7, c='k', label="Euler Approximation")
 
 
+# fig.legend()
+# fig.save("e1_approximation.svg")
+
+###########################################################
 
 
+################## Plot Error #############################
+
+# fig = Figure(x_label='Time (s)', y_label="Error in Count")
+
+# for i in (0.1, 0.05, 0.01, 0.001):
+#     x, y = euler(x0, y0, i, N)
+#     yori = ori(x)
+#     yerr = yori - y
+#     fig.plot(x, yerr, m='', ls='-', lw=0.7, label=f"h = {i} s")
+
+# fig.legend()
+# fig.save("e1_error.svg")
+
+###########################################################
 
