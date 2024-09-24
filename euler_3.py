@@ -6,10 +6,8 @@ t0 = 0
 x0 = 0
 y0 = 1
 h = 0.1
-N = 5
+N = 30
 n = int(N / h)
-
-tau = 1
 
 
 def f(x, y, t):
@@ -41,11 +39,88 @@ def euler(t0, x0, y0, h, N):
 
     return t, x, y
 
+# t, x, y = euler(t0, x0, y0, h, N)
+# xori = ori(t)
+
+# fig = Figure(x_label="Time (s)", y_label="Position (m)", x_min=0, x_max=N)
+# fig.plot(t, xori, m='', ls='--', lw=0.7, label="Exact solution", c='k')
+
+# for i in (0.1, 0.05, 0.01):
+#     t, x, y = euler(t0, x0, y0, i, N)
+#     yori = ori(x)
+#     yerr = yori - y
+#     fig.plot(t, x, m='', ls='-', lw=0.7, label=f"h = {i} s")
+
+# fig.legend()
+# fig.save("e3_approximation.svg")
+
+
+
+font = {'family': 'serif', 'size': 10, 'color': 'black'}
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 8), dpi=600)
+
+# Set the common x-axis label
+ax2.set_xlabel('Time (s)', fontdict=font)
+
+# Set the y-axis labels for each plot
+ax1.set_ylabel('Displacement (m)', fontdict=font)
+ax2.set_ylabel('Error (m)', fontdict=font)
+plt.subplots_adjust(hspace=0)
+ax1.set_xlim([0, 30])
+ax2.set_xlim([0, 30])
+# Set tick parameters without gridlines
+for ax in [ax1, ax2]:
+    ax.tick_params(which='both', direction='in', labelsize=10)
+    ax.minorticks_on()  # Enable minor ticks
+
+ax1.set_xticklabels([])
 t, x, y = euler(t0, x0, y0, h, N)
 xori = ori(t)
+ax1.plot(t, xori, marker='', ls='--', lw=0.7, c='k', label=f"Exact Solution")
+for i in (0.1, 0.05, 0.01):
+    t, x, y = euler(t0, x0, y0, i, N)
+    xori = ori(t)
+    xerr = xori - x
+    ax1.plot(t, x, marker='', ls='-', lw=0.7, label=f"h = {i} s")
+    ax2.plot(t, xerr, marker='', ls='-', lw=0.7)
 
-fig = Figure(figsize=[5, 5])
 
-fig.plot(t, x, m='', ls='-', lw=1)
-fig.plot(t, xori, m='', ls='-', lw=1, c='r')
+
+
+
+fig.legend(loc='upper center', bbox_to_anchor=(0.25, 0.87), ncol=1)
+
+# plt.savefig("e3_comparison.svg")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

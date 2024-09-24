@@ -37,7 +37,7 @@ def euler(x0, y0, h, N):
 
 ################# Plot Euler Approximation #################
 
-# fig = Figure(x_label='Time (s)', y_label="Count")
+# fig = Figure(x_label="Time (s)", y_label="Count")
 
 # x, y = euler(x0, y0, h, N)
 # yori = ori(x)
@@ -57,7 +57,7 @@ def euler(x0, y0, h, N):
 
 ################## Plot Error #############################
 
-# fig = Figure(x_label='Time (s)', y_label="Error in Count")
+# fig = Figure(x_label="Time (s)", y_label="Error in Count")
 
 # for i in (0.1, 0.05, 0.01, 0.001):
 #     x, y = euler(x0, y0, i, N)
