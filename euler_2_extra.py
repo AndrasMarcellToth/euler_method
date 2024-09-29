@@ -57,7 +57,7 @@ for i in h_list:
             b_list.append(x[j])
             break
         
-fig = Figure(x_label="Step Size", y_label="Breakdown Value")
+fig = Figure(x_label="Step Size (s)", y_label="Breakdown value (s)")
 fig.plot(h_list, b_list, c='k')
 fig.save("breakdown_value.svg")
 
